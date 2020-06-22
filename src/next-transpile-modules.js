@@ -99,13 +99,31 @@ const withTmInitializer = (transpileModules = []) => {
           );
 
           if (nextCssLoader) {
-            nextCssLoader.issuer.include = nextCssLoader.issuer.include.concat(includes);
-            nextCssLoader.issuer.exclude = excludes;
+            if (nextCssLoader.issuer.include) [
+              nextCssLoader.issuer.include = nextCssLoader.issuer.include.concat(includes);
+            } else if (nextCssLoader.issuer.and) [
+              nextCssLoader.issuer.and = nextCssLoader.issuer.and.concat(includes);
+            }
+
+            if (nextCssLoader.issuer.exclude) {
+              nextCssLoader.issuer.exclude = excludes;
+            } else if (nextCssLoader.issuer.not){
+              nextCssLoader.issuer.and = excludes;
+            }
           }
 
           if (nextSassLoader) {
-            nextSassLoader.issuer.include = nextCssLoader.issuer.include.concat(includes);
-            nextSassLoader.issuer.exclude = excludes;
+            if (nextSassLoader.issuer.include) [
+              nextSassLoader.issuer.include = nextSassLoader.issuer.include.concat(includes);
+            } else if (nextCssLoader.issuer.and) [
+              nextSassLoader.issuer.and = nextSassLoader.issuer.and.concat(includes);
+            }
+
+            if (nextSassLoader.issuer.exclude) {
+              nextSassLoader.issuer.exclude = excludes;
+            } else if (nextSassLoader.issuer.not){
+              nextSassLoader.issuer.and = excludes;
+            }
           }
 
           // Hack our way to disable errors on node_modules CSS modules
