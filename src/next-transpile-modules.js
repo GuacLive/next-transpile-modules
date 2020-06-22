@@ -99,15 +99,15 @@ const withTmInitializer = (transpileModules = []) => {
           );
 
           if (nextCssLoader) {
-            if (nextCssLoader.issuer.include) [
+            if (nextCssLoader.issuer.include) {
               nextCssLoader.issuer.include = nextCssLoader.issuer.include.concat(includes);
-            } else if (nextCssLoader.issuer.and) [
+            } else if (nextCssLoader.issuer.and) {
               nextCssLoader.issuer.and = nextCssLoader.issuer.and.concat(includes);
             }
 
             if (nextCssLoader.issuer.exclude) {
               nextCssLoader.issuer.exclude = excludes;
-            } else if (nextCssLoader.issuer.not){
+            } else if (nextCssLoader.issuer.not) {
               nextCssLoader.issuer.and = excludes;
             }
           }
@@ -115,13 +115,13 @@ const withTmInitializer = (transpileModules = []) => {
           if (nextSassLoader) {
             if (nextSassLoader.issuer.include) [
               nextSassLoader.issuer.include = nextSassLoader.issuer.include.concat(includes);
-            } else if (nextCssLoader.issuer.and) [
+            } else if (nextCssLoader.issuer.and) {
               nextSassLoader.issuer.and = nextSassLoader.issuer.and.concat(includes);
             }
 
             if (nextSassLoader.issuer.exclude) {
               nextSassLoader.issuer.exclude = excludes;
-            } else if (nextSassLoader.issuer.not){
+            } else if (nextSassLoader.issuer.not) {
               nextSassLoader.issuer.and = excludes;
             }
           }
