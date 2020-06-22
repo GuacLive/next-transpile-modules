@@ -113,7 +113,7 @@ const withTmInitializer = (transpileModules = []) => {
           }
 
           if (nextSassLoader) {
-            if (nextSassLoader.issuer.include) [
+            if (nextSassLoader.issuer.include) {
               nextSassLoader.issuer.include = nextSassLoader.issuer.include.concat(includes);
             } else if (nextCssLoader.issuer.and) {
               nextSassLoader.issuer.and = nextSassLoader.issuer.and.concat(includes);
